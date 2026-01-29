@@ -1,5 +1,19 @@
 import { CulturalEvent } from '@/types/event';
 
+// Import event images
+import orchestraImg from '@/assets/events/orchestra.jpg';
+import theaterImg from '@/assets/events/theater.jpg';
+import cinemaImg from '@/assets/events/cinema.jpg';
+import artExhibitionImg from '@/assets/events/art-exhibition.jpg';
+import balletImg from '@/assets/events/ballet.jpg';
+import literatureImg from '@/assets/events/literature.jpg';
+import jazzFestivalImg from '@/assets/events/jazz-festival.jpg';
+import workshopImg from '@/assets/events/workshop.jpg';
+import mpbImg from '@/assets/events/mpb.jpg';
+import documentaryImg from '@/assets/events/documentary.jpg';
+import digitalArtImg from '@/assets/events/digital-art.jpg';
+import spanishTheaterImg from '@/assets/events/spanish-theater.jpg';
+
 // Mock data for demonstration
 export const mockEvents: CulturalEvent[] = [
   {
@@ -10,6 +24,7 @@ export const mockEvents: CulturalEvent[] = [
     time: '20:00',
     location: 'Teatro Municipal',
     type: 'music',
+    image: orchestraImg,
     featured: true,
   },
   {
@@ -20,6 +35,7 @@ export const mockEvents: CulturalEvent[] = [
     time: '19:30',
     location: 'Centro Cultural',
     type: 'theater',
+    image: theaterImg,
     featured: true,
   },
   {
@@ -30,6 +46,7 @@ export const mockEvents: CulturalEvent[] = [
     time: '14:00',
     location: 'Cinemateca',
     type: 'cinema',
+    image: cinemaImg,
   },
   {
     id: '4',
@@ -39,6 +56,7 @@ export const mockEvents: CulturalEvent[] = [
     time: '10:00',
     location: 'Museu de Arte',
     type: 'art',
+    image: artExhibitionImg,
     featured: true,
   },
   {
@@ -49,6 +67,7 @@ export const mockEvents: CulturalEvent[] = [
     time: '20:00',
     location: 'Teatro Municipal',
     type: 'dance',
+    image: balletImg,
   },
   {
     id: '6',
@@ -58,6 +77,7 @@ export const mockEvents: CulturalEvent[] = [
     time: '09:00',
     location: 'Biblioteca Central',
     type: 'literature',
+    image: literatureImg,
   },
   {
     id: '7',
@@ -67,6 +87,7 @@ export const mockEvents: CulturalEvent[] = [
     time: '18:00',
     location: 'Parque da Cidade',
     type: 'festival',
+    image: jazzFestivalImg,
     featured: true,
   },
   {
@@ -77,6 +98,7 @@ export const mockEvents: CulturalEvent[] = [
     time: '14:00',
     location: 'Ateliê Criativo',
     type: 'workshop',
+    image: workshopImg,
   },
   {
     id: '9',
@@ -86,6 +108,7 @@ export const mockEvents: CulturalEvent[] = [
     time: '21:00',
     location: 'Casa de Shows',
     type: 'music',
+    image: mpbImg,
   },
   {
     id: '10',
@@ -95,6 +118,7 @@ export const mockEvents: CulturalEvent[] = [
     time: '19:00',
     location: 'Teatro Experimental',
     type: 'theater',
+    image: spanishTheaterImg,
   },
   {
     id: '11',
@@ -104,6 +128,7 @@ export const mockEvents: CulturalEvent[] = [
     time: '15:00',
     location: 'Cinemateca',
     type: 'cinema',
+    image: documentaryImg,
   },
   {
     id: '12',
@@ -113,5 +138,6 @@ export const mockEvents: CulturalEvent[] = [
     time: '10:00',
     location: 'Galeria Contemporânea',
     type: 'art',
+    image: digitalArtImg,
   },
 ];
