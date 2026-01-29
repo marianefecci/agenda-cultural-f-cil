@@ -1,12 +1,135 @@
-// Update this page (the content is just a fallback if you fail to update the page)
+import { useState, useMemo } from 'react';
+import { motion } from 'framer-motion';
+import { Header } from '@/components/Header';
+import { Hero } from '@/components/Hero';
+import { FeaturedEvents } from '@/components/FeaturedEvents';
+import { EventCalendar } from '@/components/EventCalendar';
+import { EventFilter } from '@/components/EventFilter';
+import { EventCard } from '@/components/EventCard';
+import { Footer } from '@/components/Footer';
+import { mockEvents } from '@/data/events';
+import { EventType } from '@/types/event';
+import { Calendar, LayoutGrid } from 'lucide-react';
 
 const Index = () => {
+  const [selectedTypes, setSelectedTypes] = useState<EventType[]>([]);
+  const [selectedDate, setSelectedDate] = useState<Date | undefined>(undefined);
+  
+  const handleToggleType = (type: EventType) => {
+    setSelectedTypes(prev => 
+      prev.includes(type) 
+        ? prev.filter(t => t !== type)
+        : [...prev, type]
+    );
+  };
+  
+  const handleClearFilters = () => {
+    setSelectedTypes([]);
+  };
+  
+  const filteredEvents = useMemo(() => {
+    return mockEvents.filter(event => {
+      if (selectedTypes.length > 0 && !selectedTypes.includes(event.type)) {
+        return false;
+      }
+      return true;
+    });
+  }, [selectedTypes]);
+  
   return (
-    <div className="flex min-h-screen items-center justify-center bg-background">
-      <div className="text-center">
-        <h1 className="mb-4 text-4xl font-bold">Welcome to Your Blank App</h1>
-        <p className="text-xl text-muted-foreground">Start building your amazing project here!</p>
-      </div>
+    <div className="min-h-screen bg-background">
+      <Header />
+      <Hero />
+      
+      <FeaturedEvents events={mockEvents} />
+      
+      {/* Calendar Section */}
+      <section id="calendario" className="py-16 md:py-24 bg-secondary/30">
+        <div className="container px-4">
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.5 }}
+            className="flex items-center gap-3 mb-8"
+          >
+            <Calendar className="h-6 w-6 text-primary" />
+            <h2 className="font-display text-2xl md:text-3xl font-bold">
+              Calendário de Eventos
+            </h2>
+          </motion.div>
+          
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.5, delay: 0.1 }}
+          >
+            <EventCalendar 
+              events={filteredEvents} 
+              onDateSelect={setSelectedDate}
+            />
+          </motion.div>
+        </div>
+      </section>
+      
+      {/* All Events Section */}
+      <section id="eventos" className="py-16 md:py-24">
+        <div className="container px-4">
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.5 }}
+            className="flex flex-col md:flex-row md:items-center md:justify-between gap-4 mb-8"
+          >
+            <div className="flex items-center gap-3">
+              <LayoutGrid className="h-6 w-6 text-primary" />
+              <h2 className="font-display text-2xl md:text-3xl font-bold">
+                Todos os Eventos
+              </h2>
+              <span className="text-sm text-muted-foreground">
+                ({filteredEvents.length})
+              </span>
+            </div>
+          </motion.div>
+          
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.5, delay: 0.1 }}
+            className="mb-8"
+            id="categorias"
+          >
+            <EventFilter 
+              selectedTypes={selectedTypes}
+              onToggleType={handleToggleType}
+              onClearFilters={handleClearFilters}
+            />
+          </motion.div>
+          
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
+            {filteredEvents.map((event, index) => (
+              <EventCard key={event.id} event={event} index={index} />
+            ))}
+          </div>
+          
+          {filteredEvents.length === 0 && (
+            <motion.div
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              className="text-center py-16"
+            >
+              <p className="text-muted-foreground text-lg">
+                Nenhum evento encontrado com os filtros selecionados.
+              </p>
+            </motion.div>
+          )}
+        </div>
+      </section>
+      
+      <Footer />
     </div>
   );
 };
