@@ -2,70 +2,67 @@
 @tailwind components;
 @tailwind utilities;
 
-@import url('https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Inter:wght@400;500;600&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Pacifico&family=Nunito:wght@400;600;700&display=swap');
 
-/* Cultural Agenda Design System - Editorial Dark Theme */
+/* Brazilian Artisanal Design System - Warm & Handmade */
 
 @layer base {
   :root {
-    --background: 240 10% 6%;
-    --foreground: 0 0% 98%;
+    /* Warm cream-based palette */
+    --background: 30 50% 97%;
+    --foreground: 20 40% 12%;
 
-    --card: 240 10% 10%;
-    --card-foreground: 0 0% 98%;
+    --card: 35 60% 98%;
+    --card-foreground: 20 40% 12%;
 
-    --popover: 240 10% 8%;
-    --popover-foreground: 0 0% 98%;
+    --popover: 35 60% 98%;
+    --popover-foreground: 20 40% 12%;
 
-    --primary: 32 95% 55%;
-    --primary-foreground: 240 10% 6%;
+    --primary: 24 95% 53%;
+    --primary-foreground: 35 60% 98%;
 
-    --secondary: 240 10% 15%;
-    --secondary-foreground: 0 0% 98%;
+    --secondary: 30 30% 92%;
+    --secondary-foreground: 20 40% 12%;
 
-    --muted: 240 10% 18%;
-    --muted-foreground: 240 5% 55%;
+    --muted: 30 20% 88%;
+    --muted-foreground: 20 20% 40%;
 
-    --accent: 280 85% 65%;
-    --accent-foreground: 0 0% 98%;
+    --accent: 340 82% 52%;
+    --accent-foreground: 35 60% 98%;
 
     --destructive: 0 84% 60%;
-    --destructive-foreground: 0 0% 98%;
+    --destructive-foreground: 35 60% 98%;
 
-    --border: 240 10% 18%;
-    --input: 240 10% 18%;
-    --ring: 32 95% 55%;
+    --border: 30 30% 85%;
+    --input: 30 30% 85%;
+    --ring: 24 95% 53%;
 
     --radius: 0.75rem;
 
-    /* Event Type Tag Colors */
-    --tag-music: 340 82% 60%;
-    --tag-theater: 280 85% 65%;
-    --tag-cinema: 200 95% 50%;
-    --tag-art: 160 84% 45%;
-    --tag-dance: 32 95% 55%;
-    --tag-literature: 45 93% 60%;
-    --tag-festival: 0 85% 60%;
-    --tag-workshop: 170 77% 45%;
+    /* Vibrant Brazilian Tag Colors */
+    --tag-music: 340 82% 52%;
+    --tag-theater: 263 70% 50%;
+    --tag-cinema: 192 91% 36%;
+    --tag-art: 160 84% 39%;
+    --tag-dance: 24 95% 53%;
+    --tag-literature: 45 93% 47%;
+    --tag-festival: 0 72% 51%;
+    --tag-workshop: 171 77% 40%;
 
     /* Typography */
-    --font-display: 'Space Grotesk', sans-serif;
-    --font-body: 'Inter', sans-serif;
+    --font-display: 'Pacifico', cursive;
+    --font-heading: 'Nunito', sans-serif;
+    --font-body: 'Nunito', sans-serif;
 
-    /* Gradients */
-    --gradient-hero: linear-gradient(135deg, hsl(240 10% 6%) 0%, hsl(240 15% 12%) 50%, hsl(280 20% 10%) 100%);
-    --gradient-card-hover: linear-gradient(145deg, hsl(240 10% 12%) 0%, hsl(240 10% 8%) 100%);
-    --gradient-primary: linear-gradient(135deg, hsl(32 95% 55%) 0%, hsl(40 95% 50%) 100%);
-
-    /* Shadows */
-    --shadow-card: 0 4px 24px -4px hsl(0 0% 0% / 0.4);
-    --shadow-card-hover: 0 12px 40px -8px hsl(0 0% 0% / 0.5);
-    --shadow-glow-primary: 0 0 40px -10px hsl(32 95% 55% / 0.4);
+    /* Artisanal Shadows */
+    --shadow-card: 4px 4px 0px hsl(30 30% 80%);
+    --shadow-card-hover: 6px 6px 0px hsl(24 95% 53% / 0.3);
+    --shadow-glow-primary: 0 4px 20px -4px hsl(24 95% 53% / 0.4);
   }
 
   .dark {
-    --background: 240 10% 6%;
-    --foreground: 0 0% 98%;
+    --background: 30 50% 97%;
+    --foreground: 20 40% 12%;
   }
 }
 
@@ -80,37 +77,144 @@
   }
 
   h1, h2, h3, h4, h5, h6 {
+    font-family: var(--font-heading);
+    font-weight: 700;
+  }
+
+  .font-display {
     font-family: var(--font-display);
   }
 }
 
 @layer components {
+  /* Artisanal text gradient */
   .text-gradient-primary {
-    background: var(--gradient-primary);
+    background: linear-gradient(135deg, hsl(24 95% 53%) 0%, hsl(340 82% 52%) 100%);
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
     background-clip: text;
   }
 
+  /* Hero gradient - warm and inviting */
   .bg-hero-gradient {
-    background: var(--gradient-hero);
+    background: linear-gradient(
+      180deg, 
+      hsl(30 50% 97%) 0%, 
+      hsl(30 40% 94%) 50%,
+      hsl(35 45% 92%) 100%
+    );
   }
 
+  /* Card hover gradient */
   .card-hover-gradient {
-    background: var(--gradient-card-hover);
+    background: linear-gradient(145deg, hsl(35 60% 99%) 0%, hsl(30 50% 96%) 100%);
   }
 
+  /* Glow shadow */
   .shadow-glow {
     box-shadow: var(--shadow-glow-primary);
   }
 
-  /* Event Type Tags */
-  .tag-music { background-color: hsl(var(--tag-music)); }
-  .tag-theater { background-color: hsl(var(--tag-theater)); }
-  .tag-cinema { background-color: hsl(var(--tag-cinema)); }
-  .tag-art { background-color: hsl(var(--tag-art)); }
-  .tag-dance { background-color: hsl(var(--tag-dance)); }
-  .tag-literature { background-color: hsl(var(--tag-literature)); color: hsl(240 10% 6%); }
-  .tag-festival { background-color: hsl(var(--tag-festival)); }
-  .tag-workshop { background-color: hsl(var(--tag-workshop)); }
+  /* Event Type Tags with solid backgrounds */
+  .tag-music { 
+    background-color: hsl(var(--tag-music)); 
+    color: white;
+  }
+  .tag-theater { 
+    background-color: hsl(var(--tag-theater)); 
+    color: white;
+  }
+  .tag-cinema { 
+    background-color: hsl(var(--tag-cinema)); 
+    color: white;
+  }
+  .tag-art { 
+    background-color: hsl(var(--tag-art)); 
+    color: white;
+  }
+  .tag-dance { 
+    background-color: hsl(var(--tag-dance)); 
+    color: white;
+  }
+  .tag-literature { 
+    background-color: hsl(var(--tag-literature)); 
+    color: hsl(20 40% 12%);
+  }
+  .tag-festival { 
+    background-color: hsl(var(--tag-festival)); 
+    color: white;
+  }
+  .tag-workshop { 
+    background-color: hsl(var(--tag-workshop)); 
+    color: white;
+  }
+
+  /* Colored shadows for cards based on event type */
+  .shadow-music { box-shadow: 4px 4px 0px hsl(var(--tag-music) / 0.4); }
+  .shadow-theater { box-shadow: 4px 4px 0px hsl(var(--tag-theater) / 0.4); }
+  .shadow-cinema { box-shadow: 4px 4px 0px hsl(var(--tag-cinema) / 0.4); }
+  .shadow-art { box-shadow: 4px 4px 0px hsl(var(--tag-art) / 0.4); }
+  .shadow-dance { box-shadow: 4px 4px 0px hsl(var(--tag-dance) / 0.4); }
+  .shadow-literature { box-shadow: 4px 4px 0px hsl(var(--tag-literature) / 0.4); }
+  .shadow-festival { box-shadow: 4px 4px 0px hsl(var(--tag-festival) / 0.4); }
+  .shadow-workshop { box-shadow: 4px 4px 0px hsl(var(--tag-workshop) / 0.4); }
+
+  /* Organic shape clip-path */
+  .organic-shape {
+    clip-path: polygon(1% 2%, 99% 0%, 100% 98%, 0% 100%);
+  }
+
+  /* Wavy bottom border */
+  .wavy-bottom {
+    position: relative;
+  }
+  .wavy-bottom::after {
+    content: '';
+    position: absolute;
+    bottom: -10px;
+    left: 0;
+    right: 0;
+    height: 20px;
+    background: inherit;
+    mask-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1200 120' preserveAspectRatio='none'%3E%3Cpath d='M0,0V46.29c47.79,22.2,103.59,32.17,158,28,70.36-5.37,136.33-33.31,206.8-37.5C438.64,32.43,512.34,53.67,583,72.05c69.27,18,138.3,24.88,209.4,13.08,36.15-6,69.85-17.84,104.45-29.34C989.49,25,1113-14.29,1200,52.47V0Z' opacity='.25'%3E%3C/path%3E%3Cpath d='M0,0V15.81C13,36.92,27.64,56.86,47.69,72.05,99.41,111.27,165,111,224.58,91.58c31.15-10.15,60.09-26.07,89.67-39.8,40.92-19,84.73-46,130.83-49.67,36.26-2.85,70.9,9.42,98.6,31.56,31.77,25.39,62.32,62,103.63,73,40.44,10.79,81.35-6.69,119.13-24.28s75.16-39,116.92-43.05c59.73-5.85,113.28,22.88,168.9,38.84,30.2,8.66,59,6.17,87.09-7.5,22.43-10.89,48-26.93,60.65-49.24V0Z' opacity='.5'%3E%3C/path%3E%3Cpath d='M0,0V5.63C149.93,59,314.09,71.32,475.83,42.57c43-7.64,84.23-20.12,127.61-26.46,59-8.63,112.48,12.24,165.56,35.4C827.93,77.22,886,95.24,951.2,90c86.53-7,172.46-45.71,248.8-84.81V0Z'%3E%3C/path%3E%3C/svg%3E");
+    mask-size: cover;
+    mask-repeat: no-repeat;
+  }
+
+  /* Hand-drawn underline effect */
+  .hand-underline {
+    position: relative;
+    display: inline-block;
+  }
+  .hand-underline::after {
+    content: '';
+    position: absolute;
+    bottom: -4px;
+    left: 0;
+    right: 0;
+    height: 4px;
+    background: hsl(var(--primary));
+    border-radius: 2px;
+    transform: rotate(-1deg);
+  }
+
+  /* Artisanal button style */
+  .btn-artisanal {
+    position: relative;
+    transition: all 0.2s ease;
+  }
+  .btn-artisanal:hover {
+    transform: translate(-2px, -2px);
+    box-shadow: 4px 4px 0px hsl(var(--foreground) / 0.2);
+  }
+  .btn-artisanal:active {
+    transform: translate(0px, 0px);
+    box-shadow: 0px 0px 0px hsl(var(--foreground) / 0.2);
+  }
 }
+
+/* Decorative rotations */
+.rotate-slight-1 { transform: rotate(-2deg); }
+.rotate-slight-2 { transform: rotate(2deg); }
+.rotate-slight-3 { transform: rotate(-1deg); }
+.rotate-slight-4 { transform: rotate(1.5deg); }

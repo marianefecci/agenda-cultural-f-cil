@@ -14,8 +14,9 @@ export default {
     },
     extend: {
       fontFamily: {
-        display: ['Space Grotesk', 'sans-serif'],
-        body: ['Inter', 'sans-serif'],
+        display: ['Pacifico', 'cursive'],
+        heading: ['Nunito', 'sans-serif'],
+        body: ['Nunito', 'sans-serif'],
       },
       colors: {
         border: "hsl(var(--border))",
@@ -67,6 +68,11 @@ export default {
         md: "calc(var(--radius) - 2px)",
         sm: "calc(var(--radius) - 4px)",
       },
+      boxShadow: {
+        'card': '4px 4px 0px hsl(30 30% 80%)',
+        'card-hover': '6px 6px 0px hsl(24 95% 53% / 0.3)',
+        'artisanal': '3px 3px 0px hsl(var(--foreground) / 0.15)',
+      },
       keyframes: {
         "accordion-down": {
           from: { height: "0" },
@@ -88,6 +94,14 @@ export default {
           from: { opacity: "0", transform: "translateY(20px)" },
           to: { opacity: "1", transform: "translateY(0)" },
         },
+        "wiggle": {
+          "0%, 100%": { transform: "rotate(-2deg)" },
+          "50%": { transform: "rotate(2deg)" },
+        },
+        "float": {
+          "0%, 100%": { transform: "translateY(0)" },
+          "50%": { transform: "translateY(-10px)" },
+        },
       },
       animation: {
         "accordion-down": "accordion-down 0.2s ease-out",
@@ -95,6 +109,8 @@ export default {
         "fade-in": "fade-in 0.5s ease-out forwards",
         "scale-in": "scale-in 0.3s ease-out forwards",
         "slide-up": "slide-up 0.6s ease-out forwards",
+        "wiggle": "wiggle 3s ease-in-out infinite",
+        "float": "float 4s ease-in-out infinite",
       },
     },
   },

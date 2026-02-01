@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import { Calendar } from '@/components/ui/calendar';
-import { CulturalEvent, EventType, eventTypeColors } from '@/types/event';
+import { CulturalEvent } from '@/types/event';
 import { format, isSameDay } from 'date-fns';
 import { ptBR } from 'date-fns/locale';
 import { motion, AnimatePresence } from 'framer-motion';
@@ -37,12 +37,12 @@ export const EventCalendar = ({ events, onDateSelect }: EventCalendarProps) => {
   };
   
   const modifiersClassNames = {
-    hasEvent: 'relative after:absolute after:bottom-1 after:left-1/2 after:-translate-x-1/2 after:w-1 after:h-1 after:rounded-full after:bg-primary',
+    hasEvent: 'relative after:absolute after:bottom-1 after:left-1/2 after:-translate-x-1/2 after:w-1.5 after:h-1.5 after:rounded-full after:bg-primary',
   };
 
   return (
     <div className="flex flex-col lg:flex-row gap-6">
-      <div className="bg-card rounded-xl border border-border/50 p-4">
+      <div className="bg-card rounded-xl border-2 border-border p-4 shadow-card">
         <Calendar
           mode="single"
           selected={selectedDate}
@@ -55,20 +55,20 @@ export const EventCalendar = ({ events, onDateSelect }: EventCalendarProps) => {
             months: "flex flex-col sm:flex-row space-y-4 sm:space-x-4 sm:space-y-0",
             month: "space-y-4",
             caption: "flex justify-center pt-1 relative items-center",
-            caption_label: "text-sm font-medium font-display",
+            caption_label: "text-sm font-bold font-heading text-foreground",
             nav: "space-x-1 flex items-center",
-            nav_button: "h-7 w-7 bg-transparent p-0 opacity-50 hover:opacity-100 hover:bg-muted rounded-md transition-colors",
+            nav_button: "h-8 w-8 bg-secondary p-0 hover:bg-primary/10 hover:text-primary rounded-lg transition-colors border border-border",
             nav_button_previous: "absolute left-1",
             nav_button_next: "absolute right-1",
             table: "w-full border-collapse space-y-1",
             head_row: "flex",
-            head_cell: "text-muted-foreground rounded-md w-9 font-normal text-[0.8rem]",
+            head_cell: "text-muted-foreground rounded-md w-9 font-semibold text-[0.8rem] font-heading",
             row: "flex w-full mt-2",
             cell: "h-9 w-9 text-center text-sm p-0 relative",
-            day: "h-9 w-9 p-0 font-normal rounded-md hover:bg-muted transition-colors",
+            day: "h-9 w-9 p-0 font-semibold rounded-lg hover:bg-primary/10 hover:text-primary transition-colors font-body",
             day_range_end: "day-range-end",
-            day_selected: "bg-primary text-primary-foreground hover:bg-primary hover:text-primary-foreground focus:bg-primary focus:text-primary-foreground",
-            day_today: "bg-accent text-accent-foreground",
+            day_selected: "bg-primary text-primary-foreground hover:bg-primary hover:text-primary-foreground focus:bg-primary focus:text-primary-foreground rounded-lg",
+            day_today: "bg-accent/20 text-accent font-bold",
             day_outside: "text-muted-foreground opacity-50",
             day_disabled: "text-muted-foreground opacity-50",
             day_hidden: "invisible",
@@ -85,9 +85,9 @@ export const EventCalendar = ({ events, onDateSelect }: EventCalendarProps) => {
               animate={{ opacity: 1, x: 0 }}
               exit={{ opacity: 0, x: -20 }}
               transition={{ duration: 0.3 }}
-              className="bg-card rounded-xl border border-border/50 p-5"
+              className="bg-card rounded-xl border-2 border-border p-5 shadow-card"
             >
-              <h3 className="font-display text-lg font-semibold mb-4">
+              <h3 className="font-heading text-lg font-bold mb-4 text-foreground">
                 {format(selectedDate, "d 'de' MMMM, EEEE", { locale: ptBR })}
               </h3>
               
@@ -96,23 +96,22 @@ export const EventCalendar = ({ events, onDateSelect }: EventCalendarProps) => {
                   {selectedDateEvents.map((event) => (
                     <div
                       key={event.id}
-                      className={cn(
-                        "p-4 rounded-lg border-l-4 bg-secondary/50",
-                        `border-l-tag-${event.type}`
-                      )}
+                      className="p-4 rounded-lg border-l-4 bg-secondary/50"
                       style={{ borderLeftColor: `hsl(var(--tag-${event.type}))` }}
                     >
                       <div className="flex items-start justify-between gap-2 mb-2">
-                        <h4 className="font-medium text-foreground">{event.title}</h4>
-                        <EventTag type={event.type} size="sm" />
+                        <h4 className="font-heading font-bold text-foreground">{event.title}</h4>
+                        <div className="-rotate-2">
+                          <EventTag type={event.type} size="sm" />
+                        </div>
                       </div>
-                      <div className="flex flex-wrap gap-4 text-sm text-muted-foreground">
+                      <div className="flex flex-wrap gap-4 text-sm text-muted-foreground font-body">
                         <span className="flex items-center gap-1">
-                          <Clock className="h-3.5 w-3.5" />
+                          <Clock className="h-3.5 w-3.5 text-accent" />
                           {event.time}
                         </span>
                         <span className="flex items-center gap-1">
-                          <MapPin className="h-3.5 w-3.5" />
+                          <MapPin className="h-3.5 w-3.5 text-tag-art" />
                           {event.location}
                         </span>
                       </div>
@@ -120,7 +119,7 @@ export const EventCalendar = ({ events, onDateSelect }: EventCalendarProps) => {
                   ))}
                 </div>
               ) : (
-                <p className="text-muted-foreground">
+                <p className="text-muted-foreground font-body">
                   Nenhum evento programado para esta data.
                 </p>
               )}
@@ -129,9 +128,9 @@ export const EventCalendar = ({ events, onDateSelect }: EventCalendarProps) => {
             <motion.div
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
-              className="bg-card rounded-xl border border-border/50 p-8 h-full flex items-center justify-center"
+              className="bg-card rounded-xl border-2 border-border border-dashed p-8 h-full flex items-center justify-center"
             >
-              <p className="text-muted-foreground text-center">
+              <p className="text-muted-foreground text-center font-body">
                 Selecione uma data no calendário para ver os eventos
               </p>
             </motion.div>
