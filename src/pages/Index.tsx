@@ -10,6 +10,7 @@ import { Footer } from '@/components/Footer';
 import { mockEvents } from '@/data/events';
 import { EventType } from '@/types/event';
 import { Calendar, LayoutGrid } from 'lucide-react';
+import { StarBurst } from '@/components/DecorativeElements';
 
 const Index = () => {
   const [selectedTypes, setSelectedTypes] = useState<EventType[]>([]);
@@ -44,7 +45,12 @@ const Index = () => {
       <FeaturedEvents events={mockEvents} />
       
       {/* Calendar Section */}
-      <section id="calendario" className="py-16 md:py-24 bg-secondary/30">
+      <section id="calendario" className="py-16 md:py-24 bg-secondary/50 relative">
+        {/* Decorative elements */}
+        <div className="absolute top-8 right-8 text-primary/20 hidden lg:block">
+          <StarBurst className="w-16 h-16" />
+        </div>
+        
         <div className="container px-4">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
@@ -53,9 +59,11 @@ const Index = () => {
             transition={{ duration: 0.5 }}
             className="flex items-center gap-3 mb-8"
           >
-            <Calendar className="h-6 w-6 text-primary" />
-            <h2 className="font-display text-2xl md:text-3xl font-bold">
-              Calendário de Eventos
+            <div className="p-2 bg-primary/10 rounded-lg rotate-3">
+              <Calendar className="h-6 w-6 text-primary" />
+            </div>
+            <h2 className="font-heading text-2xl md:text-3xl font-bold text-foreground">
+              Calendário de <span className="text-primary">Eventos</span>
             </h2>
           </motion.div>
           
@@ -84,12 +92,14 @@ const Index = () => {
             className="flex flex-col md:flex-row md:items-center md:justify-between gap-4 mb-8"
           >
             <div className="flex items-center gap-3">
-              <LayoutGrid className="h-6 w-6 text-primary" />
-              <h2 className="font-display text-2xl md:text-3xl font-bold">
-                Todos os Eventos
+              <div className="p-2 bg-accent/10 rounded-lg -rotate-3">
+                <LayoutGrid className="h-6 w-6 text-accent" />
+              </div>
+              <h2 className="font-heading text-2xl md:text-3xl font-bold text-foreground">
+                Todos os <span className="text-accent">Eventos</span>
               </h2>
-              <span className="text-sm text-muted-foreground">
-                ({filteredEvents.length})
+              <span className="text-sm text-muted-foreground bg-secondary px-3 py-1 rounded-full font-bold">
+                {filteredEvents.length}
               </span>
             </div>
           </motion.div>
@@ -119,9 +129,9 @@ const Index = () => {
             <motion.div
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
-              className="text-center py-16"
+              className="text-center py-16 bg-card rounded-xl border-2 border-dashed border-border"
             >
-              <p className="text-muted-foreground text-lg">
+              <p className="text-muted-foreground text-lg font-body">
                 Nenhum evento encontrado com os filtros selecionados.
               </p>
             </motion.div>
