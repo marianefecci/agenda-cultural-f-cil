@@ -1,17 +1,22 @@
 import { motion } from 'framer-motion';
 import { CulturalEvent } from '@/types/event';
 import { EventCard } from './EventCard';
+import { SponsoredEventCard } from './SponsoredEventCard';
 import { Star } from 'lucide-react';
 import { StarBurst } from './DecorativeElements';
 
 interface FeaturedEventsProps {
   events: CulturalEvent[];
+  sponsoredEvent?: CulturalEvent;
 }
 
-export const FeaturedEvents = ({ events }: FeaturedEventsProps) => {
-  const featuredEvents = events.filter(event => event.featured).slice(0, 4);
+export const FeaturedEvents = ({ events, sponsoredEvent }: FeaturedEventsProps) => {
+  // Filter out sponsored event from featured to avoid duplication
+  const featuredEvents = events
+    .filter(event => event.featured && event.id !== sponsoredEvent?.id)
+    .slice(0, 3);
   
-  if (featuredEvents.length === 0) return null;
+  if (featuredEvents.length === 0 && !sponsoredEvent) return null;
   
   return (
     <section className="py-16 md:py-24 relative">
@@ -40,8 +45,23 @@ export const FeaturedEvents = ({ events }: FeaturedEventsProps) => {
         </motion.div>
         
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+          {/* Sponsored Event Card - First position */}
+          {sponsoredEvent && (
+            <SponsoredEventCard 
+              event={sponsoredEvent} 
+              index={0}
+              sponsorName="Marca Exemplo"
+              sponsorUrl="https://example.com"
+            />
+          )}
+          
+          {/* Regular Featured Events */}
           {featuredEvents.map((event, index) => (
-            <EventCard key={event.id} event={event} index={index} />
+            <EventCard 
+              key={event.id} 
+              event={event} 
+              index={sponsoredEvent ? index + 1 : index} 
+            />
           ))}
         </div>
       </div>

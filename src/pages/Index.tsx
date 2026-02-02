@@ -2,10 +2,12 @@ import { useState, useMemo } from 'react';
 import { motion } from 'framer-motion';
 import { Header } from '@/components/Header';
 import { Hero } from '@/components/Hero';
+import { SponsorBanner } from '@/components/SponsorBanner';
 import { FeaturedEvents } from '@/components/FeaturedEvents';
 import { EventCalendar } from '@/components/EventCalendar';
 import { EventFilter } from '@/components/EventFilter';
 import { EventCard } from '@/components/EventCard';
+import { SponsoredEventCard } from '@/components/SponsoredEventCard';
 import { Footer } from '@/components/Footer';
 import { mockEvents } from '@/data/events';
 import { EventType } from '@/types/event';
@@ -37,12 +39,22 @@ const Index = () => {
     });
   }, [selectedTypes]);
   
+  // Get a sponsored event (first featured event as example)
+  const sponsoredEvent = mockEvents.find(e => e.featured);
+  
   return (
     <div className="min-h-screen bg-background">
       <Header />
       <Hero />
       
-      <FeaturedEvents events={mockEvents} />
+      {/* Sponsor Banner - Discreto abaixo do Hero */}
+      <SponsorBanner 
+        sponsorName="Marca Exemplo"
+        message="Apoiando a cultura brasileira"
+        sponsorUrl="https://example.com"
+      />
+      
+      <FeaturedEvents events={mockEvents} sponsoredEvent={sponsoredEvent} />
       
       {/* Calendar Section */}
       <section id="calendario" className="py-16 md:py-24 bg-secondary/50 relative">
