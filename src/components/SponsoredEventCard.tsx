@@ -28,14 +28,14 @@ export const SponsoredEventCard = ({
       transition={{ duration: 0.4, delay: index * 0.1 }}
       whileHover={{ y: -4 }}
       className={cn(
-        "group relative overflow-hidden rounded-xl bg-card border-2 border-primary/30 transition-all duration-300",
-        "hover:border-primary hover:shadow-lg",
-        "ring-2 ring-primary/10 ring-offset-2 ring-offset-background"
+        "group relative overflow-hidden rounded-xl bg-card border border-primary/30 transition-all duration-300",
+        "hover:border-primary hover:shadow-lg hover:shadow-primary/10",
+        "ring-1 ring-primary/20"
       )}
     >
       {/* Sponsored Badge - Top ribbon */}
       <div className="absolute top-0 right-0 z-20">
-        <div className="bg-primary text-primary-foreground text-xs font-bold px-3 py-1.5 rounded-bl-lg flex items-center gap-1">
+        <div className="bg-primary text-primary-foreground text-xs font-semibold px-3 py-1.5 rounded-bl-lg flex items-center gap-1">
           <Star className="h-3 w-3 fill-current" />
           Patrocinado
         </div>
@@ -52,7 +52,7 @@ export const SponsoredEventCard = ({
           <div className="absolute inset-0 bg-gradient-to-t from-card via-transparent to-transparent" />
           
           {/* Tag overlay */}
-          <div className="absolute top-3 left-3 -rotate-3">
+          <div className="absolute top-3 left-3">
             <EventTag type={event.type} size="sm" />
           </div>
         </div>
@@ -62,21 +62,19 @@ export const SponsoredEventCard = ({
         {/* Show tag here if no image */}
         {!event.image && (
           <div className="flex items-start justify-between gap-3 mb-3 mt-4">
-            <div className="-rotate-2">
-              <EventTag type={event.type} size="sm" />
-            </div>
+            <EventTag type={event.type} size="sm" />
           </div>
         )}
         
-        <h3 className="font-heading text-lg font-bold text-foreground mb-2 group-hover:text-primary transition-colors line-clamp-2">
+        <h3 className="font-heading text-lg font-semibold text-foreground mb-2 group-hover:text-primary transition-colors line-clamp-2">
           {event.title}
         </h3>
         
-        <p className="text-sm text-muted-foreground mb-4 line-clamp-2 font-body">
+        <p className="text-sm text-muted-foreground mb-4 line-clamp-2">
           {event.description}
         </p>
         
-        <div className="space-y-2 text-sm text-muted-foreground font-body">
+        <div className="space-y-2 text-sm text-muted-foreground">
           <div className="flex items-center gap-2">
             <Calendar className="h-4 w-4 text-primary" />
             <span>{format(event.date, "d 'de' MMMM", { locale: ptBR })}</span>
@@ -86,7 +84,7 @@ export const SponsoredEventCard = ({
             <span>{event.time}</span>
           </div>
           <div className="flex items-center gap-2">
-            <MapPin className="h-4 w-4 text-tag-art" />
+            <MapPin className="h-4 w-4 text-muted-foreground" />
             <span>{event.location}</span>
           </div>
         </div>
@@ -110,7 +108,7 @@ export const SponsoredEventCard = ({
                   className="h-5 object-contain"
                 />
               ) : (
-                <span className="text-sm font-bold text-foreground group-hover/sponsor:text-primary transition-colors">
+                <span className="text-sm font-semibold text-foreground group-hover/sponsor:text-primary transition-colors">
                   {sponsorName}
                 </span>
               )}

@@ -1,4 +1,4 @@
-import { EventType, eventTypeLabels } from '@/types/event';
+import { EventType } from '@/types/event';
 import { EventTag } from './EventTag';
 import { motion } from 'framer-motion';
 
@@ -27,7 +27,7 @@ export const EventFilter = ({ selectedTypes, onToggleType, onClearFilters }: Eve
       transition={{ duration: 0.4 }}
       className="flex flex-wrap items-center gap-3"
     >
-      <span className="text-sm text-muted-foreground font-bold mr-2 font-heading">
+      <span className="text-sm text-muted-foreground font-medium mr-2">
         Filtrar por:
       </span>
       
@@ -37,7 +37,6 @@ export const EventFilter = ({ selectedTypes, onToggleType, onClearFilters }: Eve
           initial={{ opacity: 0, scale: 0.8 }}
           animate={{ opacity: 1, scale: 1 }}
           transition={{ duration: 0.3, delay: index * 0.05 }}
-          style={{ transform: `rotate(${(index % 2 === 0 ? -1 : 1) * (index % 3)}deg)` }}
         >
           <EventTag
             type={type}
@@ -53,7 +52,7 @@ export const EventFilter = ({ selectedTypes, onToggleType, onClearFilters }: Eve
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           onClick={onClearFilters}
-          className="text-sm text-muted-foreground hover:text-primary transition-colors font-bold underline underline-offset-4 decoration-wavy font-heading"
+          className="text-sm text-muted-foreground hover:text-primary transition-colors font-medium underline underline-offset-4"
         >
           Limpar filtros
         </motion.button>

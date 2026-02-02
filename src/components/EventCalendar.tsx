@@ -6,7 +6,6 @@ import { ptBR } from 'date-fns/locale';
 import { motion, AnimatePresence } from 'framer-motion';
 import { EventTag } from './EventTag';
 import { Clock, MapPin } from 'lucide-react';
-import { cn } from '@/lib/utils';
 
 interface EventCalendarProps {
   events: CulturalEvent[];
@@ -42,7 +41,7 @@ export const EventCalendar = ({ events, onDateSelect }: EventCalendarProps) => {
 
   return (
     <div className="flex flex-col lg:flex-row gap-6">
-      <div className="bg-card rounded-xl border-2 border-border p-4 shadow-card">
+      <div className="bg-card rounded-xl border border-border p-4">
         <Calendar
           mode="single"
           selected={selectedDate}
@@ -55,20 +54,20 @@ export const EventCalendar = ({ events, onDateSelect }: EventCalendarProps) => {
             months: "flex flex-col sm:flex-row space-y-4 sm:space-x-4 sm:space-y-0",
             month: "space-y-4",
             caption: "flex justify-center pt-1 relative items-center",
-            caption_label: "text-sm font-bold font-heading text-foreground",
+            caption_label: "text-sm font-semibold text-foreground",
             nav: "space-x-1 flex items-center",
             nav_button: "h-8 w-8 bg-secondary p-0 hover:bg-primary/10 hover:text-primary rounded-lg transition-colors border border-border",
             nav_button_previous: "absolute left-1",
             nav_button_next: "absolute right-1",
             table: "w-full border-collapse space-y-1",
             head_row: "flex",
-            head_cell: "text-muted-foreground rounded-md w-9 font-semibold text-[0.8rem] font-heading",
+            head_cell: "text-muted-foreground rounded-md w-9 font-medium text-[0.8rem]",
             row: "flex w-full mt-2",
             cell: "h-9 w-9 text-center text-sm p-0 relative",
-            day: "h-9 w-9 p-0 font-semibold rounded-lg hover:bg-primary/10 hover:text-primary transition-colors font-body",
+            day: "h-9 w-9 p-0 font-medium rounded-lg hover:bg-primary/10 hover:text-primary transition-colors",
             day_range_end: "day-range-end",
             day_selected: "bg-primary text-primary-foreground hover:bg-primary hover:text-primary-foreground focus:bg-primary focus:text-primary-foreground rounded-lg",
-            day_today: "bg-accent/20 text-accent font-bold",
+            day_today: "bg-accent/20 text-accent font-semibold",
             day_outside: "text-muted-foreground opacity-50",
             day_disabled: "text-muted-foreground opacity-50",
             day_hidden: "invisible",
@@ -85,9 +84,9 @@ export const EventCalendar = ({ events, onDateSelect }: EventCalendarProps) => {
               animate={{ opacity: 1, x: 0 }}
               exit={{ opacity: 0, x: -20 }}
               transition={{ duration: 0.3 }}
-              className="bg-card rounded-xl border-2 border-border p-5 shadow-card"
+              className="bg-card rounded-xl border border-border p-5"
             >
-              <h3 className="font-heading text-lg font-bold mb-4 text-foreground">
+              <h3 className="font-heading text-lg font-semibold mb-4 text-foreground">
                 {format(selectedDate, "d 'de' MMMM, EEEE", { locale: ptBR })}
               </h3>
               
@@ -100,18 +99,16 @@ export const EventCalendar = ({ events, onDateSelect }: EventCalendarProps) => {
                       style={{ borderLeftColor: `hsl(var(--tag-${event.type}))` }}
                     >
                       <div className="flex items-start justify-between gap-2 mb-2">
-                        <h4 className="font-heading font-bold text-foreground">{event.title}</h4>
-                        <div className="-rotate-2">
-                          <EventTag type={event.type} size="sm" />
-                        </div>
+                        <h4 className="font-heading font-semibold text-foreground">{event.title}</h4>
+                        <EventTag type={event.type} size="sm" />
                       </div>
-                      <div className="flex flex-wrap gap-4 text-sm text-muted-foreground font-body">
+                      <div className="flex flex-wrap gap-4 text-sm text-muted-foreground">
                         <span className="flex items-center gap-1">
                           <Clock className="h-3.5 w-3.5 text-accent" />
                           {event.time}
                         </span>
                         <span className="flex items-center gap-1">
-                          <MapPin className="h-3.5 w-3.5 text-tag-art" />
+                          <MapPin className="h-3.5 w-3.5 text-muted-foreground" />
                           {event.location}
                         </span>
                       </div>
@@ -119,7 +116,7 @@ export const EventCalendar = ({ events, onDateSelect }: EventCalendarProps) => {
                   ))}
                 </div>
               ) : (
-                <p className="text-muted-foreground font-body">
+                <p className="text-muted-foreground">
                   Nenhum evento programado para esta data.
                 </p>
               )}
@@ -128,9 +125,9 @@ export const EventCalendar = ({ events, onDateSelect }: EventCalendarProps) => {
             <motion.div
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
-              className="bg-card rounded-xl border-2 border-border border-dashed p-8 h-full flex items-center justify-center"
+              className="bg-card rounded-xl border border-border border-dashed p-8 h-full flex items-center justify-center"
             >
-              <p className="text-muted-foreground text-center font-body">
+              <p className="text-muted-foreground text-center">
                 Selecione uma data no calendário para ver os eventos
               </p>
             </motion.div>
