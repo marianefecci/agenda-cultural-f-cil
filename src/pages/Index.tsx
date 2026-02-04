@@ -5,6 +5,7 @@ import { Hero } from '@/components/Hero';
 import { SponsorBanner } from '@/components/SponsorBanner';
 import { FeaturedEvents } from '@/components/FeaturedEvents';
 import { EventCalendar } from '@/components/EventCalendar';
+import { AIRecommendationSection } from '@/components/AIRecommendationSection';
 import { EventFilter } from '@/components/EventFilter';
 import { EventCard } from '@/components/EventCard';
 import { Footer } from '@/components/Footer';
@@ -85,6 +86,9 @@ const Index = () => {
           </motion.div>
         </div>
       </section>
+      
+      {/* AI Recommendation Section */}
+      <AIRecommendationSection />
       
       {/* All Events Section */}
       <section id="eventos" className="py-16 md:py-24">
