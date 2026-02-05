@@ -55,6 +55,9 @@ const Index = () => {
       
       <FeaturedEvents events={mockEvents} sponsoredEvent={sponsoredEvent} />
       
+      {/* AI Recommendation Section */}
+      <AIRecommendationSection />
+      
       {/* Calendar Section */}
       <section id="calendario" className="py-16 md:py-24 bg-secondary/30">
         <div className="container px-4">
@@ -86,9 +89,6 @@ const Index = () => {
           </motion.div>
         </div>
       </section>
-      
-      {/* AI Recommendation Section */}
-      <AIRecommendationSection />
       
       {/* All Events Section */}
       <section id="eventos" className="py-16 md:py-24">
