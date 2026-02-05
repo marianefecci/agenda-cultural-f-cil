@@ -34,7 +34,7 @@ export const Hero = () => {
           <h1 className="font-display text-4xl sm:text-5xl md:text-6xl lg:text-7xl mb-6 tracking-tight text-foreground">
             Sua{' '}
             <span className="text-gradient">
-              Agenda Cultural
+              <span className="font-semibold">Agenda Cultural</span>
             </span>
             <br />
             em um só lugar
