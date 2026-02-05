@@ -21,7 +21,7 @@ export const Header = () => {
               <Calendar className="h-5 w-5 text-primary-foreground" />
             </div>
             <span className="font-display text-xl hidden sm:block text-foreground">
-              Agenda <span className="text-primary">Cultural</span>
+              <span className="font-semibold">Agenda</span> <span className="text-primary">Cultural</span>
             </span>
           </a>
           
